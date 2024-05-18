@@ -1,0 +1,21 @@
+idUsuario,idContenido,tipoReacción,fecha
+1,1,Me gusta,2023-01-01
+1,2,Me encanta,2023-01-15
+2,3,No me gusta,2023-01-20
+2,4,Me gusta,2023-02-01
+3,5,Me encanta,2023-02-10
+3,6,Me gusta,2023-02-15
+4,7,Me gusta,2023-03-01
+4,8,No me gusta,2023-03-10
+5,9,Me encanta,2023-03-20
+5,10,Me gusta,2023-03-25
+6,11,Me gusta,2023-04-01
+6,12,No me gusta,2023-04-05
+7,13,Me encanta,2023-04-10
+7,14,Me gusta,2023-04-15
+8,15,Me gusta,2023-04-20
+8,16,No me gusta,2023-04-25
+9,17,Me encanta,2023-05-01
+9,18,Me gusta,2023-05-05
+10,19,Me gusta,2023-05-10
+10,20,No me gusta,2023-05-15
