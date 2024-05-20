@@ -1,21 +1,21 @@
-idUsuario,idContenido,tipoReacción,fecha
-1,1,Me gusta,2023-01-01
-1,2,Me encanta,2023-01-15
-2,3,No me gusta,2023-01-20
-2,4,Me gusta,2023-02-01
-3,5,Me encanta,2023-02-10
-3,6,Me gusta,2023-02-15
-4,7,Me gusta,2023-03-01
-4,8,No me gusta,2023-03-10
-5,9,Me encanta,2023-03-20
-5,10,Me gusta,2023-03-25
-6,11,Me gusta,2023-04-01
-6,12,No me gusta,2023-04-05
-7,13,Me encanta,2023-04-10
-7,14,Me gusta,2023-04-15
-8,15,Me gusta,2023-04-20
-8,16,No me gusta,2023-04-25
-9,17,Me encanta,2023-05-01
-9,18,Me gusta,2023-05-05
-10,19,Me gusta,2023-05-10
-10,20,No me gusta,2023-05-15
+idUsuario,idContenido,tipoContenido,tipoReaccion,fechaReaccion
+1,1,Episodio,Me gusta,"28/12/2019"
+2,2,Episodio,Me encanta,"16/05/2014"
+3,3,Episodio,No me gusta,"26/04/2020"
+4,4,Episodio,Me gusta,"12/12/2019"
+5,5,Episodio,Me encanta,"21/01/2021"
+6,6,Episodio,No me gusta,"18/08/2022"
+7,7,Episodio,Me gusta,"20/09/2020"
+8,8,Episodio,Me encanta,"27/08/2018"
+9,9,Episodio,Me gusta,"11/09/2021"
+10,10,Episodio,No me gusta,"15/10/2020"
+11,1,Pelicula,Me gusta,"14/02/2021"
+12,2,Pelicula,Me encanta,"14/02/2019"
+13,3,Pelicula,No me gusta,"16/01/2020"
+14,4,Pelicula,Me gusta,"30/12/2019"
+15,5,Pelicula,Me encanta,"12/06/2021"
+16,6,Pelicula,No me gusta,"17/12/2018"
+17,7,Pelicula,Me gusta,"25/09/2020"
+18,8,Pelicula,Me encanta,"31/05/2021"
+19,9,Pelicula,Me gusta,"17/01/2020"
+20,10,Pelicula,No me gusta,"14/03/2022"
