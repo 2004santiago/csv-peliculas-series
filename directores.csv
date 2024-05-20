@@ -1,27 +1,11 @@
-idDirector,nombre,edad,teléfono,sexo
-1,Steven Spielberg,77,3101234567,M
-2,Greta Gerwig,36,3202345678,F
-3,Christopher Nolan,49,3303456789,M
-4,Kathryn Bigelow,69,3104567890,F
-5,Quentin Tarantino,57,3205678901,M
-6,Ava DuVernay,49,3106789012,F
-7,James Cameron,66,3307890123,M
-8,Sofia Coppola,50,3108901234,F
-9,Peter Jackson,59,3009012345,M
-10,Patty Jenkins,50,3200123456,F
-11,Lana Wachowski,58,3214578977,F
-12,Lilly Wachowski,56,3215469452,F
-13,John Lasseter,67,3215469785,M
-14,Shinji Takamatsu,62,3215458742,M
-15,Matt Duffer,40,3695412548,M
-16,Ross Duffer,40,3574123698,M
-17,Tim Van Patten,64,3695410125,M
-18,Owen Harris,37,3754100258,M
-19,Stephen Daldry,68,3021256984,M
-20,Vince Gilligan,57,3521458745,M
-21,Dave Filoni,49,3692015478,M
-22,Alik Sakharov,64,3603214741,M
-23,Jonathan Nolan,47,3698520147,M
-24,James Burrows,83,3652554778,M
-25,Greg Daniels,60,3541214789,M
-26,Paul Feig,61,3652147895,M
+idDirector,nombre,edad,telefono,sexo
+1,Steven Spielberg,74,31548736,M
+2,Christopher Nolan,50,349621996,M
+3,Patty Jenkins,49,31565949,F
+4,Quentin Tarantino,58,31684795,M
+5,Hayao Miyazaki,80,35146954,M
+6,Denis Villeneuve,54,3116849,M
+7,Greta Gerwig,38,3521666,F
+8,James Cameron,67,26569848,M
+9,Bong Joon-ho,51,363456984,M
+10,Chloe Zhao,39,6141698,F
