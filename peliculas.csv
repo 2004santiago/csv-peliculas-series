@@ -1,11 +1,11 @@
-idPelícula,título,año de lanzamiento,resumen
-1,Interstellar,2014,Ciencia ficción y aventura espacial.
-2,La La Land,2016,Musical romántico en Los Ángeles.
-3,Inception,2010,Thriller de ciencia ficción sobre sueños.
-4,Avatar,2009,Aventura épica en un mundo alienígena.
-5,The Matrix,1999,Realidad virtual y rebelión.
-6,Titanic,1997,Romance histórico en el trágico viaje.
-7,Jurassic Park,1993,Dinosaurios clonados en un parque temático.
-8,The Dark Knight,2008,Acción y drama en Ciudad Gótica.
-9,Toy Story,1995,Aventuras de juguetes vivientes.
-10,Pulp Fiction,1994,Historias entrelazadas en Los Ángeles.
+idPelicula,titulo,lanzamiento,resumen
+1,Dune,2021,Un joven noble debe viajar al planeta más peligroso del universo para asegurar el futuro de su familia y su pueblo.
+2,No Time to Die,2021,James Bond ha dejado el servicio activo, pero su paz es efímera cuando un antiguo amigo de la CIA aparece pidiendo ayuda.
+3,Tenet,2020,Un agente secreto debe manipular el flujo del tiempo para prevenir un futuro catastrófico.
+4,Parasite,2019,Una familia pobre se infiltra en la vida de una familia rica con consecuencias inesperadas.
+5,Black Widow,2021,Natasha Romanoff se enfrenta a su pasado en una aventura llena de espionaje y acción.
+6,Spirited Away,2001,Una joven se encuentra atrapada en un mundo misterioso y debe encontrar una manera de escapar.
+7,Avatar,2009,Un marine parapléjico se embarca en una misión a Pandora y debe elegir entre seguir órdenes o proteger el mundo que ama.
+8,Inception,2010,Un ladrón que roba secretos corporativos a través del uso de la tecnología de sueños compartidos se le da la tarea inversa de plantar una idea.
+9,Interstellar,2014,Un grupo de exploradores viaja a través de un agujero de gusano en el espacio para asegurar la supervivencia de la humanidad.
+10,The Dark Knight,2008,Batman enfrenta al Joker, un criminal psicótico que quiere sumir a Gotham en la anarquía.
