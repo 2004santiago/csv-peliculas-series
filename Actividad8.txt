@@ -1,1 +1,187 @@
+// Crear índices para mejorar el rendimiento de las consultas
+CREATE INDEX FOR (u:Usuario) ON (u.idUsuario);
+CREATE INDEX FOR (d:Director) ON (d.idDirector);
+CREATE INDEX FOR (p:Pais) ON (p.idPais);
+CREATE INDEX FOR (p:Pelicula) ON (p.idPelicula);
+CREATE INDEX FOR (s:Serie) ON (s.idSerie);
+CREATE INDEX FOR (e:Episodio) ON (e.idEpisodio);
+CREATE INDEX FOR (t:Temporada) ON (t.idTemporada);
+CREATE INDEX FOR (g:Genero) ON (g.idGenero);
+
+// Crear nodos de Países
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/paises.csv' AS row
+MERGE (p:Pais {idPais: toInteger(row.idPais)})
+ON CREATE SET p.nombre = row.nombre;
+
+// Crear nodos de Usuarios
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/usuarios.csv' AS row
+MERGE (u:Usuario {idUsuario: toInteger(row.idUsuario)})
+ON CREATE SET
+  u.nombre = row.nombre,
+  u.edad = toInteger(row.edad),
+  u.telefono = row.telefono,
+  u.sexo = row.sexo,
+  u.telefono_movil = row.telefono_movil,
+  u.email = row.email;
+
+// Crear nodos de Directores
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/directores.csv' AS row
+MERGE (d:Director {idDirector: toInteger(row.idDirector)})
+ON CREATE SET
+  d.nombre = row.nombre,
+  d.edad = toInteger(row.edad),
+  d.telefono = row.telefono,
+  d.sexo = row.sexo;
+
+// Crear nodos de Series
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/series.csv' AS row
+MERGE (s:Serie {idSerie: toInteger(row.idSerie)})
+ON CREATE SET
+  s.titulo = row.titulo,
+  s.lanzamiento = toInteger(row.lanzamiento),
+  s.resumen = row.resumen;
+
+// Crear nodos de Episodios
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/episodios.csv' AS row
+MERGE (e:Episodio {idEpisodio: toInteger(row.idEpisodio)})
+ON CREATE SET
+  e.titulo = row.titulo,
+  e.numEpisodio = toInteger(row.numEpisodio),
+  e.duracion = row.duracion;
+
+// Crear nodos de Películas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/peliculas.csv' AS row
+MERGE (p:Pelicula {idPelicula: toInteger(row.idPelicula)})
+ON CREATE SET
+  p.titulo = row.titulo,
+  p.lanzamiento = toInteger(row.lanzamiento),
+  p.resumen = row.resumen;
+
+// Crear nodos de Temporadas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/temporadas.csv' AS row
+MERGE (t:Temporada {idTemporada: toInteger(row.idTemporada)})
+ON CREATE SET
+  t.lanzamiento = toInteger(row.lanzamiento),
+  t.nombreTemporada = row.nombreTemporada;
+
+// Crear nodos de Géneros
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/generos.csv' AS row
+MERGE (g:Genero {idGenero: toInteger(row.idGenero)})
+ON CREATE SET g.nombre = row.nombre;
+
+// Relación DIRIGIDA_POR para Películas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Dirigida_por.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Pelicula'
+MATCH (director:Director {idDirector: toInteger(row.directorId)}),
+      (pelicula:Pelicula {idPelicula: toInteger(row.idContenido)})
+MERGE (pelicula)-[:DIRIGIDA_POR]->(director);
+
+// Relación DIRIGIDA_POR para Episodios
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Dirigida_por.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Episodio'
+MATCH (director:Director {idDirector: toInteger(row.directorId)}),
+      (episodio:Episodio {idEpisodio: toInteger(row.idContenido)})
+MERGE (episodio)-[:DIRIGIDA_POR]->(director);
+
+// Relación TIENE_NACIONALIDAD para Directores
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Tiene_nacionalidad.csv' AS row
+WITH row
+WHERE row.tipoEntidad = 'Director'
+MATCH (director:Director {idDirector: toInteger(row.entidadId)}),
+      (pais:Pais {idPais: toInteger(row.paisId)})
+MERGE (director)-[:TIENE_NACIONALIDAD]->(pais);
+
+// Relación TIENE_NACIONALIDAD para Usuarios
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Tiene_nacionalidad.csv' AS row
+WITH row
+WHERE row.tipoEntidad = 'Usuario'
+MATCH (usuario:Usuario {idUsuario: toInteger(row.entidadId)}),
+      (pais:Pais {idPais: toInteger(row.paisId)})
+MERGE (usuario)-[:TIENE_NACIONALIDAD]->(pais);
+
+// Relación TIENE_ORIGEN para Películas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Tiene_como_origen.csv' AS row
+WITH row
+WHERE row.TipoContenido = 'Pelicula'
+MATCH (pais:Pais {idPais: toInteger(row.idPais)}),
+      (pelicula:Pelicula {idPelicula: toInteger(row.IdContenido)})
+MERGE (pelicula)-[:TIENE_ORIGEN]->(pais);
+
+// Relación TIENE_ORIGEN para Series
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Tiene_como_origen.csv' AS row
+WITH row
+WHERE row.TipoContenido = 'Serie'
+MATCH (pais:Pais {idPais: toInteger(row.idPais)}),
+      (serie:Serie {idSerie: toInteger(row.IdContenido)})
+MERGE (serie)-[:TIENE_ORIGEN]->(pais);
+
+// Relación ES_PARTE_DE para Episodios y Temporadas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Es_parte_de.csv' AS row
+MATCH (episodio:Episodio {idEpisodio: toInteger(row.idEpisodio)}),
+      (temporada:Temporada {idTemporada: toInteger(row.idTemporada)})
+MERGE (episodio)-[:ES_PARTE_DE]->(temporada);
+
+// Relación PERTENECE_A para Películas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Pertenece_a.csv' AS row
+WITH row
+WHERE row.idTipoContenido = 'Pelicula'
+MATCH (pelicula:Pelicula {idPelicula: toInteger(row.idContenido)}),
+      (genero:Genero {idGenero: toInteger(row.idGenero)})
+MERGE (pelicula)-[:PERTENECE_A]->(genero);
+
+// Relación PERTENECE_A para Series
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Pertenece_a.csv' AS row
+WITH row
+WHERE row.idTipoContenido = 'Serie'
+MATCH (serie:Serie {idSerie: toInteger(row.idContenido)}),
+      (genero:Genero {idGenero: toInteger(row.idGenero)})
+MERGE (serie)-[:PERTENECE_A]->(genero);
+
+// Relación TIENE_UNA para Series y Temporadas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Tiene_una.csv' AS row
+MATCH (serie:Serie {idSerie: toInteger(row.idSerie)}),
+      (temporada:Temporada {idTemporada: toInteger(row.idTemporada)})
+MERGE (serie)-[:TIENE_UNA]->(temporada);
+
+// Relación MIRA para Películas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Mira.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Pelicula'
+MATCH (usuario:Usuario {idUsuario: toInteger(row.idUsuario)}),
+      (pelicula:Pelicula {idPelicula: toInteger(row.idContenido)})
+MERGE (usuario)-[:MIRA {fechaVisualizacion: row.fechaVisualizacion}]->(pelicula);
+
+// Relación MIRA para Episodios
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Mira.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Episodio'
+MATCH (usuario:Usuario {idUsuario: toInteger(row.idUsuario)}),
+      (episodio:Episodio {idEpisodio: toInteger(row.idContenido)})
+MERGE (usuario)-[:MIRA {fechaVisualizacion: row.fechaVisualizacion}]->(episodio);
+
+// Relación REACCIONA_A para Películas
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Reacciona_a.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Pelicula'
+MATCH (usuario:Usuario {idUsuario: toInteger(row.idUsuario)}),
+      (pelicula:Pelicula {idPelicula: toInteger(row.idContenido)})
+MERGE (usuario)-[:REACCIONA_A {tipoReaccion: row.tipoReaccion, fechaReaccion: row.fechaReaccion}]->(pelicula);
+
+// Relación REACCIONA_A para Episodios
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Reacciona_a.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Episodio'
+MATCH (usuario:Usuario {idUsuario: toInteger(row.idUsuario)}),
+      (episodio:Episodio {idEpisodio: toInteger(row.idContenido)})
+MERGE (usuario)-[:REACCIONA_A {tipoReaccion: row.tipoReaccion, fechaReaccion: row.fechaReaccion}]->(episodio);
+
+// Relación REACCIONA_A para Series
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/2004santiago/csv-peliculas-series/main/Reacciona_a.csv' AS row
+WITH row
+WHERE row.tipoContenido = 'Serie'
+MATCH (usuario:Usuario {idUsuario: toInteger(row.idUsuario)}),
+      (serie:Serie {idSerie: toInteger(row.idContenido)})
+MERGE (usuario)-[:REACCIONA_A {tipoReaccion: row.tipoReaccion, fechaReaccion: row.fechaReaccion}]->(serie);
 
