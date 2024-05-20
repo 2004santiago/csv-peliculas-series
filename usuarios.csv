@@ -1,11 +1,21 @@
-idUsuario,nombre,edad,teléfono,sexo,teléfono móvil,email
-1,Juan Pérez,25,3201234567,M,3217654321,juan.perez@email.com
-2,Ana Gómez,30,3102345678,F,3128765432,ana.gomez@email.com
-3,Luis Martínez,22,3003456789,M,3009876543,luis.martinez@email.com
-4,Maria López,28,3204567890,F,3211987654,maria.lopez@email.com
-5,Pedro Álvarez,35,3105678901,M,3120198765,pedro.alvarez@email.com
-6,Carla Muñoz,33,3006789012,F,3001209876,carla.munoz@email.com
-7,Roberto Diaz,29,3207890123,M,3212320987,roberto.diaz@email.com
-8,Sofía Castro,27,3108901234,F,3123432109,sofia.castro@email.com
-9,Diego Torres,31,3009012345,M,3004543210,diego.torres@email.com
-10,Elena Ramírez,26,3200123456,F,3215654321,elena.ramirez@email.com
+idUsuario,nombre,edad,telefono,sexo,telefono_movil,email
+1,Juan Perez,30,55678974,M,5558790,juan.perez@gmail.com
+2,Anna Smith,25,307896579,F,3008796754,anna.smith@gmail.com
+3,Hiro Tanaka,35,30578910,M,3156778950,hiro.tanaka@japan.jp
+4,Emily Davis,28,3187964,F,3226578940,emily.davis@uk.co
+5,Luis Martinez,22,3145678,M,3226244468,luis.martinez@gmail.com
+6,Maria Gonzalez,32,34568684,F,3109856789,maria.gonzalez@gmail.com
+7,Chen Wei,27,36789067,M,3105678956,chen.wei@china.cn
+8,Emma Wilson,30,3056789,F,3126754321,emma.wilson@gmail.com
+9,Isabella Rossi,24,30567895,F,3206547819,isabella.rossi@it.it
+10,Liam O'Connor,29,30564321,M,3156789043,liam.oconnor@ie.ie
+11,Olga Ivanova,26,30543279,F,3147856423,olga.ivanova@ru.ru
+12,Ahmed Ali,31,30789564,M,3156789453,ahmed.ali@eg.eg
+13,Lucas Silva,27,30543212,M,3187654321,lucas.silva@br.br
+14,Sophie Muller,23,31098765,F,3007654321,sophie.muller@de.de
+15,Diego Fernandez,34,31234567,M,3109876543,diego.fernandez@mx.mx
+16,Zara Patel,28,31456789,F,3009876543,zara.patel@in.in
+17,David Johnson,26,32098765,M,3187654321,david.johnson@us.us
+18,Yuki Nakamura,29,31567890,F,3112345678,yuki.nakamura@jp.jp
+19,Carlos Santana,22,31678905,M,3123456789,carlos.santana@es.es
+20,Ana Maria Torres,35,31098765,F,3009876543,ana.torres@gmail.com
