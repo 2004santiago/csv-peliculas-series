@@ -1,0 +1,39 @@
+// 1. Consultar el historial de los contenidos multimedia visualizados por un usuario. Mostrar título, director, país de origen y fecha de visualización
+MATCH (u:Usuario {idUsuario: 1})-[v:MIRA]->(c)
+MATCH (c)-[:DIRIGIDA_POR]->(d:Director)
+MATCH (c)-[:TIENE_ORIGEN]->(p:Pais)
+RETURN c.titulo AS Título, d.nombre AS Director, p.nombre AS País_de_Origen, v.fechaVisualizacion AS Fecha_de_Visualización
+
+// 2. ¿Cuáles son los contenidos multimedia más demandados por los clientes de un sexo (hombre/mujer)?
+MATCH (u:Usuario)-[v:MIRA]->(c)
+WHERE u.sexo = 'F'
+RETURN c.titulo AS Título, COUNT(v) AS Visualizaciones
+ORDER BY Visualizaciones DESC
+LIMIT 10
+
+// 3. ¿Cuáles son los principales contenidos multimedia visualizados por los clientes con un origen cualquiera y rango de edad?
+MATCH (u:Usuario)-[v:MIRA]->(c)
+WHERE u.edad >= 20 AND u.edad <= 30
+RETURN c.titulo AS Título, COUNT(v) AS Visualizaciones
+ORDER BY Visualizaciones DESC
+LIMIT 10
+
+// 4. ¿Cuál es el contenido multimedia más visualizado? Mostrar el título, país de origen, fecha de lanzamiento y número de visualizaciones.
+MATCH (u:Usuario)-[v:MIRA]->(c)
+MATCH (c)-[:TIENE_ORIGEN]->(p:Pais)
+RETURN c.titulo AS Título, p.nombre AS País_de_Origen, c.lanzamiento AS Fecha_de_Lanzamiento, COUNT(v) AS Visualizaciones
+ORDER BY Visualizaciones DESC
+LIMIT 1
+
+// 5. Sugerir contenido similar respecto a un género multimedia visualizado por el usuario previamente.
+MATCH (u:Usuario {idUsuario: 1})-[v:MIRA]->(c)-[:PERTENECE_A]->(g:Genero)
+MATCH (similar)-[:PERTENECE_A]->(g)
+WHERE NOT (u)-[:MIRA]->(similar)
+RETURN similar.titulo AS Título, g.nombre AS Género
+
+// 6. Sugerir contenido basado en un tipo de reacción como puede ser 'Me gusta' o 'Me encanta' respecto a otros usuarios que sean del mismo país.
+MATCH (u:Usuario {idUsuario: 1})-[:TIENE_NACIONALIDAD]->(p:Pais)<-[:TIENE_NACIONALIDAD]-(otros:Usuario)-[r:REACCIONA_A {tipoReaccion: 'Me gusta'}]->(c)
+WHERE NOT (u)-[:MIRA]->(c)
+RETURN c.titulo AS Título, COUNT(r) AS Reacciones
+ORDER BY Reacciones DESC
+LIMIT 10
